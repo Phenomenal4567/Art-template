@@ -60,57 +60,6 @@
       </footer>
     </div>
 <script>
-
-Google Ads Scripts
-Ads Scripts
-
-
-
-Google Ads Scripts
-Ads Scripts
-Home
-Products
-Google Ads Scripts
-Examples
-Was this helpful?
-
-Ads
-
-bookmark_border
-
-
-Add an expanded text ad
-
-function addExpandedTextAd(adGroupName,campaignName) {
-  const campaignIterator = AdsApp.campaigns()
-      .withCondition(`campaign.name = "${campaignName}"`)
-      .get();
-  if (!campaignIterator.hasNext()){
-      throw new error (`No campaign found with name: "${campaignname}"`);
-  }
-
-  const adGroupIterator = AdsApp.adGroups()
-      .withCondition(`ad_group.name = "${adGroupName}"`)
-      .get();
-  if (!adGroupIterator.hasNext()){
-      throw new error (`No ad group found with name: "${adGroupName}"`);
-  }
-
-  const adGroup = adGroupIterator.next();
-  adGroup.newAd().expandedTextAdBuilder()
-    .withHeadlinePart1('First headline of ad')
-    .withHeadlinePart2('Second headline of ad')
-    .withHeadlinePart3('Third headline of ad')
-    .withDescription('First Ad description')
-    .withDescription2('Second Ad description')
-    .withPath1('path1')
-    .withPath2('path2')
-    .withFinalUrl('http://www.example.com')
-    .build();
-  // ExpandedTextAdBuilder has additional options.
-  // For more details, see
-  // https://developers.google.com/google-ads/scripts/docs/reference/adsapp/adsapp_expandedtextadbuilder
-}
 </script>
 </body>
 </html>
