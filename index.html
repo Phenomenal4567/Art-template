@@ -59,5 +59,22 @@
         </p>
       </footer>
     </div>
+<script>
+function pauseAdInAdGroup(adGroupName) {
+  const adGroupIterator = AdsApp.adGroups()
+    .withCondition(`ad_group.name = "${adGroupName}"`)
+    .get();
+  if (!adGroupIterator.hasNext()) {
+    throw new Error(`No ad group found with name: "${adGroupName}"`);
+  }
+  const adGroup = adGroupIterator.next();
+  const adsIterator = adGroup.ads().get();
+  if (!adsIterator.hasNext()) {
+    throw new Error(`No ads found in ad group: "${adGroupName}"`);
+  }
+  const ad = adsIterator.next();
+  ad.pause();
+}
+</script>
 </body>
 </html>
