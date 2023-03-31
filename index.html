@@ -60,6 +60,30 @@
       </footer>
     </div>
 <script>
+function main() {
+    var THE_VALUE_OF_ONE_CONVERSION = 10;
+    var DECREASE_BIDS_BY_PERCENTAGE = .5;
+    var kw_iter = AdWordsApp.keywords()
+        .withCondition("Status = ENABLED")
+        .get();
+    while (kw_iter.hasNext()) {
+        var kw = kw_iter.next();
+        var kw_stats = kw.getStatsFor("LAST_30_DAYS");
+        var cost = kw_stats.getCost();
+        var conversions = kw_stats.getConversions();
+        if (conversions == 0) {
+            if (THE_VALUE_OF_ONE_CONVERSION * 5 > cost) {
+                kw.pause();
+            } else if (THE_VALUE_OF_ONE_CONVERSION * 2 > cost) {
+                kw.setMaxCpc(kw.getMaxCpc() * (1 - DECREASE_BIDS_BY_PERCENTAGE));
+            }
+        } else {
+            //no conversions on this keyword
+            //we will deal with that later
+            continue;
+        }
+    }
+}
 </script>
 </body>
 </html>
